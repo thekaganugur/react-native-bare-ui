@@ -1,13 +1,11 @@
-import { createTheme } from "@shopify/restyle";
+import { ColorProps as RColorProps, createTheme } from "@shopify/restyle";
 import { breakpoints } from "./breakpoints";
 import { colors } from "./colors";
-import { spacing } from "./spacing";
-import {
-  ColorProps as RColorProps,
-  TextProps as RTextProps,
-  BoxProps as RBoxProps,
-} from "@shopify/restyle";
 import { radii } from "./radius";
+import { spacing } from "./spacing";
+
+export type Theme = typeof theme;
+export type ColorProps = RColorProps<Theme>;
 
 export const textVariants = {
   header: {
@@ -41,11 +39,6 @@ export const textVariants = {
     color: "black",
   },
 };
-
-export type Theme = typeof theme;
-export type ColorProps = RColorProps<Theme>;
-export type TextProps = RTextProps<Theme>;
-export type BoxProps = RBoxProps<Theme>;
 
 export const theme = createTheme({
   colors: colors,

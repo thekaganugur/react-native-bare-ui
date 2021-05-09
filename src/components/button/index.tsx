@@ -1,25 +1,14 @@
-import { createBox } from "@shopify/restyle";
 import React from "react";
-import {
-  GestureResponderEvent,
-  TouchableOpacity,
-  TouchableOpacityProps,
-} from "react-native";
-import { BoxProps, TextProps, Theme } from "../../theme";
-import Text from "../restyle/text";
+import { BoxProps } from "../../restyle/box";
+import Pressable, { PressableProps } from "../../restyle/pressable";
+import Text, { TextProps } from "../../restyle/text";
 
-type BaseProps = Omit<TouchableOpacityProps, "onPress"> & {
-  onPress: (event: GestureResponderEvent) => void;
-  children: React.ReactNode;
-  /** Disables onPress if true */
+export interface ButtonProps extends PressableProps {
   isLoading?: boolean;
-};
-type ButtonProps = BoxProps & BaseProps;
+}
 interface ButtonComposition {
   Text: React.FC<TextProps>;
 }
-
-const BoxTouchableOpacity = createBox<Theme, BaseProps>(TouchableOpacity);
 
 const defaultStyleProps: BoxProps = {
   flexDirection: "row",
@@ -29,6 +18,7 @@ const defaultStyleProps: BoxProps = {
   backgroundColor: "teal",
   paddingHorizontal: "l",
   paddingVertical: "s",
+  borderRadius: "default",
 };
 
 export const Button: React.FC<ButtonProps> & ButtonComposition = (
@@ -38,21 +28,14 @@ export const Button: React.FC<ButtonProps> & ButtonComposition = (
 
   const handleOnPress = React.useCallback(
     (evt) => {
-      if (!isLoading) {
+      if (!isLoading && onPress) {
         onPress(evt);
       }
     },
     [isLoading, onPress]
   );
 
-  return (
-    <BoxTouchableOpacity
-      activeOpacity={0.6}
-      {...defaultStyleProps}
-      onPress={handleOnPress}
-      {...rest}
-    />
-  );
+  return <Pressable {...defaultStyleProps} onPress={handleOnPress} {...rest} />;
 };
 
 Button.Text = Text;

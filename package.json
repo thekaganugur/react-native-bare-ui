@@ -9,8 +9,6 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@emotion/native": "^11.0.0",
-    "@emotion/react": "^11.4.0",
     "@shopify/polaris-tokens": "^3.1.0",
     "@shopify/restyle": "^1.4.0",
     "add": "^2.0.6",

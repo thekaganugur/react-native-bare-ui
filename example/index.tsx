@@ -1,7 +1,9 @@
 import React from "react";
 import { Alert } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/FontAwesome5";
 import { Button, ButtonProps } from "../src";
+import Checkbox from "../src/components/checkbox/checkbox";
+import useDisclosure from "../src/hooks/use-disclosure";
 import ActivityIndicator from "../src/restyle/activity-indicator";
 import Box from "../src/restyle/box";
 
@@ -61,7 +63,10 @@ function ExampleApp() {
           Alert.alert("Pressed");
         }}
         title="Foo"
+        marginBottom="l"
       />
+
+      <Checkbox onChange={console.log} />
     </Box>
   );
 }
